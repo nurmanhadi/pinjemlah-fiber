@@ -15,6 +15,8 @@ func main() {
 	app := fiber.New()
 	app.Use(logger.New())
 	configs.SetupCORS(app)
+	app.Use(configs.RateLimiter())
 	routes.SetupRoutes(app)
+
 	app.Listen(":8888")
 }
