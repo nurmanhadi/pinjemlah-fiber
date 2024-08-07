@@ -1,7 +1,7 @@
-// +heroku goVersion go1.22.5
+// +heroku goVersion go1.20
 module pinjemlah-fiber
 
-go 1.22.5
+go 1.20
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.5
