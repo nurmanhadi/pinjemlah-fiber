@@ -1,4 +1,4 @@
-// +heroku goVersion go1.22.5
+// +heroku goVersion go1.17
 module pinjemlah-fiber
 
 go 1.17
