@@ -11,8 +11,9 @@ import (
 var DB *gorm.DB
 
 func Connection() {
-	dsn := "host=localhost user=postgres password=admin dbname=pinjemlah port=5432 sslmode=disable TimeZone=Asia/Shanghai"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	const dsnProduction = "postgres://koyeb-adm:lu1LcrHRd4xN@ep-spring-block-a1syh4zb.ap-southeast-1.pg.koyeb.app/koyebdb"
+	const dsnLocal = "host=localhost user=postgres password=admin dbname=pinjemlah port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	db, err := gorm.Open(postgres.Open(dsnProduction), &gorm.Config{})
 	if err != nil {
 		log.Fatal("failed to connect database")
 	} else {
