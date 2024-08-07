@@ -164,3 +164,31 @@ func AdminLogout(c *fiber.Ctx) error {
 		"message": "logout success",
 	})
 }
+
+func RegisterAdmin(c *fiber.Ctx) error {
+	type inputAdmin struct {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+	var input inputAdmin
+	if err := c.BodyParser(&input); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "cannot parse JSON"})
+	}
+	hash, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "failed hash password"})
+	}
+
+	admin := models.Admin{
+		Username: input.Username,
+		Password: string(hash),
+	}
+	if err := databases.DB.Create(&admin).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "registrasi gagal"})
+	}
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"status":  "201",
+		"message": "registrasi berhasil",
+		"data":    admin,
+	})
+}

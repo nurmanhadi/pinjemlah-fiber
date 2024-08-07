@@ -14,6 +14,7 @@ func SetupRoutes(app *fiber.App) {
 	admin := auth.Group("/admin", middlewares.AuthToken)
 	admin.Post("/login", handlers.AdminLogin)
 	admin.Post("/logout", handlers.AdminLogout)
+	admin.Post("/register", handlers.RegisterAdmin)
 
 	adm := api.Group("/admin", middlewares.AuthToken, middlewares.AdminAuthMiddleware)
 	adm.Get("/users", handlers.AdminGetUsers)
