@@ -30,7 +30,7 @@ func isLocalNetwork(ip string) bool {
 func SetupCORS(app *fiber.App) {
 	app.Use(cors.New(cors.Config{
 		AllowOriginsFunc: func(origin string) bool {
-			allowedOrigins := []string{"http://localhost:5173"}
+			allowedOrigins := []string{"http://localhost:5173, https://pinjemlah-admin.com, https://www.pinjemlah-admin.com"}
 
 			for _, o := range allowedOrigins {
 				if o == origin {
