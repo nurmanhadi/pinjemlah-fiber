@@ -74,7 +74,7 @@ func UserLogin(c *fiber.Ctx) error {
 		Value:    tokenString,
 		Expires:  time.Now().Add(time.Hour * 72),
 		HTTPOnly: true,
-		SameSite: fiber.CookieSameSiteStrictMode,
+		SameSite: fiber.CookieSameSiteLaxMode,
 		Secure:   true,
 	}
 	c.Cookie(&cookie)
@@ -92,7 +92,7 @@ func UserLogout(c *fiber.Ctx) error {
 		Value:    "",
 		Expires:  time.Now().Add(-time.Hour),
 		HTTPOnly: true,
-		SameSite: fiber.CookieSameSiteStrictMode,
+		SameSite: fiber.CookieSameSiteLaxMode,
 		Secure:   true,
 	}
 	c.Cookie(&cookie)
@@ -137,7 +137,7 @@ func AdminLogin(c *fiber.Ctx) error {
 		Value:    tokenString,
 		Expires:  time.Now().Add(time.Hour * 72),
 		HTTPOnly: true,
-		SameSite: fiber.CookieSameSiteStrictMode,
+		SameSite: fiber.CookieSameSiteLaxMode,
 		Secure:   true,
 	}
 	c.Cookie(&cookie)
@@ -154,7 +154,7 @@ func AdminLogout(c *fiber.Ctx) error {
 		Value:    "",
 		Expires:  time.Now().Add(-time.Hour),
 		HTTPOnly: true,
-		SameSite: fiber.CookieSameSiteStrictMode,
+		SameSite: fiber.CookieSameSiteLaxMode,
 		Secure:   true,
 	}
 	c.Cookie(&cookie)
